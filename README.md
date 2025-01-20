@@ -5,5 +5,5 @@
 - Signup Page => Saksham
 - Homepage => Chirag
 - Map Page => Chirag
-- Profile Page =>
-- Book Page =>
+- Profile Page => Akash 
+- Book Page => Akash 
