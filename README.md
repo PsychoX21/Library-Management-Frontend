@@ -1,8 +1,9 @@
 # Library-Management-Frontend
 
 ## Pages
-- Login Page =>
-- Homepage =>
-- Map Page =>
+- Login Page => Saksham
+- Signup Page => Saksham
+- Homepage => Chirag
+- Map Page => Chirag
 - Profile Page =>
 - Book Page =>
