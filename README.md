@@ -1,2 +1,8 @@
 # Library-Management-Frontend
-Pages
+
+## Pages
+- Login Page =>
+- Homepage =>
+- Map Page =>
+- Profile Page =>
+- Book Page =>
