@@ -1,3 +1,12 @@
+.my-page-style {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  justify-content: center;
+  align-items: center;
+}
+
 .login-container {
   text-align: center;
   width: 90%;
@@ -20,12 +29,6 @@
   z-index: 2;
   width: 80%;
   aspect-ratio: 2.4;
-}
-
-h2 {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 20px;
 }
 
 .login-container form {
@@ -92,15 +95,6 @@ h2 {
 
 .login-wrapper a:hover {
   color: #2575fc;
-}
-
-body {
-    display: flex;
-    width: 100%;
-    height: 100%;
-  
-    justify-content: center;
-    align-items: center;
 }
 
 .login-profile {
