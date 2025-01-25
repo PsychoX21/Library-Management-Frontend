@@ -1,6 +1,9 @@
-Go inside directory "Central Library"
-bun install
-bun dev
+## Steps to Run This
 
-(If bun not installed
-npm i -g bun)
+- cd '.\Central Library\'
+- bun install
+- bun dev
+
+### If Bun is not installed
+#### Run the following code in terminal
+- npm i -g bun
