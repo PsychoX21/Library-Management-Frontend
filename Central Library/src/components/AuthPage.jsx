@@ -2,8 +2,18 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AuthPage.css';
 import { Intro } from "./Blocks.jsx"
+import { useEffect } from "react";
 
 const AuthPage = () => {
+  useEffect(() => {
+    document.body.classList.add("my-page-style");
+    document.getElementById("root").classList.add("my-page-root");
+
+    return () => {
+      document.body.classList.remove("my-page-style");
+      document.getElementById("root").classList.remove("my-page-root");
+    };
+  }, []);
   const navigate = useNavigate();
 
   return (

@@ -1,8 +1,18 @@
 import React from 'react';
 import './LoginPage.css';
 import { Intro } from "./Blocks.jsx"
+import { useEffect } from "react";
 
 const LoginPage = () => {
+  useEffect(() => {
+    document.body.classList.add("my-page-style");
+    document.getElementById("root").classList.add("my-page-root");
+
+    return () => {
+      document.body.classList.remove("my-page-style");
+      document.getElementById("root").classList.add("my-page-root");
+    };
+  }, []);
   return (
     <>
       <Intro height="85%" width="50%"/>

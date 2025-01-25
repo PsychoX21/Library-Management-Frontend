@@ -1,8 +1,18 @@
 import React from 'react';
 import './SignupPage.css';
 import { Intro } from "./Blocks.jsx"
+import { useEffect } from "react";
 
 const SignupPage = () => {
+  useEffect(() => {
+    document.body.classList.add("my-page-style");
+    document.getElementById("root").classList.add("my-page-root");
+
+    return () => {
+      document.body.classList.remove("my-page-style");
+      document.getElementById("root").classList.add("my-page-root");
+    };
+  }, []);
   return (
     <div className="signup-main">
       <div className='left'>
@@ -11,10 +21,9 @@ const SignupPage = () => {
         alt="Library"
         className="lib-image"
         />
-        <Intro height="50%" width="80%"/>
+        <Intro height="70%" width="100%"/>
       </div>
       <div className="signup-container">
-        <h2>Sign Up</h2>
         <form>
           <label>Full Name</label>
           <input type="text" placeholder="Enter your full name" required />
