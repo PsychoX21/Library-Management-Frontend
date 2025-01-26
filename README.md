@@ -4,6 +4,12 @@
 - Login Page => Saksham
 - Signup Page => Saksham
 - Homepage => Chirag
-- Map Page => Chirag
-- Profile Page => Akash 
-- Book Page => Akash 
+- Profile Page => Chirag 
+- Map Page => Akash
+- Book Page => Akash
+  
+
+-  We are gonna work in the same folder on different pages! 
+-  empty jsx files for all have been created just write the code in those files
+-  DO NOT rename any function(even rafc in empty jsx) or file 
+- while using the navbar page property is required
