@@ -28,7 +28,7 @@ export const Navbar = (props) => {
                                 <Link className="nav-link" to="/map">Map</Link>
                             </li>
                             <li className="profiletab nav-item" style={props.page==="profile"? highlight: {}}>
-                                <Link className="nav-link" to="/yourprofile">Profile</Link>
+                                <Link className="nav-link" to="/profile">Profile</Link>
                             </li>
                         </ul>
                         {props.searchbar && (

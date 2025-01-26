@@ -5,6 +5,7 @@ export const MapPage = () => {
   return (
     <>
         <Navbar page="map"/>
+        Map Page
     </>
   )
 }
