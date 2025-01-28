@@ -4,7 +4,7 @@ import AuthPage from './components/AuthPage';
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import { Homepage } from './components/Homepage';
-import { MapPage } from './MapPage';
+import { MapPage } from './components/MapPage';
 import { ProfilePage } from './components/ProfilePage';
 import { BookPage } from './components/BookPage';
 
