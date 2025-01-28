@@ -1,11 +1,15 @@
 import React from 'react'
 import { Navbar } from './components/Navbar'
+import './MapPage.css'
 
 export const MapPage = () => {
   return (
-    <>
+    <div className='mappage'>
         <Navbar page="map"/>
-        Map Page
-    </>
+        <h2 className='maphead'></h2>
+        <div className='mapimgdiv'>
+          <img className='mapimg' src="src/assets/map.png" alt="iitblogorfomer"/>
+        </div>
+    </div>
   )
 }
