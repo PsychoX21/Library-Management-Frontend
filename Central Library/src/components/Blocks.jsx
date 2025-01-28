@@ -7,7 +7,7 @@ const StyledDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px;
+    margin: ${(props) => props.margin || '20px'};
     padding: 20px;
     background-color: rgba(31, 60, 31, 0.7);
     border-radius: 10px;
@@ -21,6 +21,7 @@ const StyledDiv = styled.div`
         color: rgba(243, 232, 211, 1);
         margin-bottom: 20px;
         margin-top: 20px;
+        line-height: 1.1;
     }
 
     h3,h4 {
@@ -30,9 +31,9 @@ const StyledDiv = styled.div`
     }
 `;
 
-export const Intro = ({ height, width }) => {
+export const Intro = ({ height, width, margin }) => {
     return (
-        <StyledDiv height={height} width={width}>
+        <StyledDiv height={height} width={width} margin={margin}>
             <h1>Central Library</h1>
             <h3>Indian Institute of Technology, Bombay</h3>
             <h4>Mumbai, Maharashtra - 400076</h4>
