@@ -7,7 +7,7 @@
 - Profile Page => Chirag 
 - Map Page => Akash
 - Book Page => Akash
-  
+- search result page => Akash  
 
 -  We are gonna work in the same folder on different pages! 
 -  empty jsx files for all have been created just write the code in those files
