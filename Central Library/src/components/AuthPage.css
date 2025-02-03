@@ -38,12 +38,15 @@
     height: 95%;
     left: 45%;
     box-sizing: content-box;
+    align-items: center;
+    justify-content: center;
 }
 
 .auth-lib-image {
     width: 25%;
-    align-self: flex-end;
-    justify-self: center;
+    right: 0%;
+    top: 0%;
+    position: absolute;
 }
 
 .auth-container {
@@ -72,7 +75,6 @@
     align-items: center;
     justify-items: center;
     position: relative;
-    bottom: 2%;
     
     opacity: 0;
     transition: opacity 0.4s ease;

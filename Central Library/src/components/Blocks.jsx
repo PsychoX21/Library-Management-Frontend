@@ -45,8 +45,8 @@ export const Intro = ({ height, width, margin }) => {
 
 const ProfileContainer = styled.div`
 position: relative;
-width: 220px;
-height: 220px;
+width: 200px;
+height: 200px;
 border-radius: 50%;
 overflow: hidden;
 `;
@@ -55,6 +55,7 @@ const ProfileImage = styled.img`
 width: 100%;
 height: 100%;
 object-fit: cover;
+scale: 1.025;
 border-radius: 50%;
 `;
 

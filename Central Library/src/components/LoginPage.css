@@ -40,10 +40,9 @@
   border-radius: 25px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   padding: 25px 0px;
-  align-self: flex-start;
-  position: relative;
-  top: 5%;
-  left: 5%;
+  align-self: center;
+  justify-self: center;
+  /* position: relative; */
   z-index: 2;
   width: 80%;
   aspect-ratio: 2.4;

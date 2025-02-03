@@ -3,12 +3,13 @@ import './SignupPage.css';
 import { Intro, ProfilePhoto } from "./Blocks.jsx"
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 const SignUp = () => {
   const [slide, setSlide] = useState(0);
   const [formData, setFormData] = useState({
-    profilePhoto: "src/assets/profiles/1.jpg",
+    profilePhoto: "src/assets/profiles/5.jpg",
     name: "",
     email: "",
     password: "",
@@ -19,19 +20,83 @@ const SignUp = () => {
     referral: "",
   });
 
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+    name: '',
+    phone: '',
+    dob: '',
+  });
+
+  const [visible, setVisible] = useState(false);
+
+  const validateForm = () => {
+    const { email, password, name, phone, dob } = formData;
+    let formErrors = { email: '', password: '', name: '', phone: '', dob: '' };
+    let isValid = true;
+
+    if (slide === 0) {
+      if (!name.trim()) {
+        formErrors.name = 'Name cannot be empty';
+        isValid = false;
+      }
+
+      if (!email.endsWith('@iitb.ac.in')) {
+        formErrors.email = 'Invalid LDAP email';
+        isValid = false;
+      }
+
+      const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&#^~`<>;:/?])[A-Za-z\d@$!%*?&#^~`<>;:/?]{8,}$/;
+
+      if (!passwordRegex.test(password)) {
+        formErrors.password =
+          'Password must have at least 8 characters, 1 upper, 1 lower, 1 digit & 1 special';
+        isValid = false;
+      }
+    };
+
+
+    if (slide === 1) {
+      const currentDate = new Date();
+      const dob = new Date(formData.dob);
+      
+      if (!dob || dob > currentDate || dob < new Date('1900-01-01')) {
+        formErrors.dob = 'Date of Birth is invalid';
+        isValid = false;
+      }
+
+      if (phone.length !== 10 || isNaN(phone)) {
+        formErrors.phone = 'Invalid Phone Number';
+        isValid = false;
+      }
+    };
+
+    setErrors(formErrors);
+    return isValid;
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
+
+    setErrors({
+      ...errors,
+      [name]: '',
+    });
   };
 
   const handleNext = () => {
-    if (slide === 0 && !formData.email.endsWith("@iitb.ac.in")) {
-      alert("Email must be of type @iitb.ac.in");
-    } else {
-      setSlide((prev) => prev + 1);
+    if (slide === 0) {
+      if (!validateForm()) {
+        console.log("Form is not valid");
+        return;
+      }
+      else {
+        setSlide((prev) => prev + 1);
+      }
     }
   };
 
@@ -41,6 +106,11 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      console.log("Form is not valid");
+      return;
+    }
     console.log("Form Submitted:", formData);
   };
 
@@ -63,7 +133,7 @@ const SignUp = () => {
                 />
               </div>
               <div className="input-group">
-                <label className="label">Name</label>
+                <label className="label required">Name</label>
                 <input
                   type="text"
                   name="name"
@@ -72,9 +142,10 @@ const SignUp = () => {
                   onChange={handleInputChange}
                   className="input-field"
                 />
+                {errors.name && <div className="error-message">{errors.name}</div>}
               </div>
               <div className="input-group">
-                <label className="label">LDAP ID</label>
+                <label className="label required">LDAP ID</label>
                 <input
                   type="email"
                   name="email"
@@ -83,17 +154,24 @@ const SignUp = () => {
                   onChange={handleInputChange}
                   className="input-field"
                 />
+                {errors.email && <div className="error-message">{errors.email}</div>}
               </div>
               <div className="input-group">
-                <label className="label">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  placeholder='Create a password'
-                  onChange={handleInputChange}
-                  className="input-field"
-                />
+                <label className="label required">Password</label>
+                <div className='password-wrapper'>
+                  <input
+                    type={visible ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    placeholder='Create a password'
+                    onChange={handleInputChange}
+                    className="input-field password"
+                  />
+                  <span className="password-toggle" onClick={() => setVisible(!visible)}>
+                  {visible ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
+                {errors.password && <div className="error-message">{errors.password}</div>}
               </div>
               <button
                 onClick={handleNext}
@@ -114,7 +192,7 @@ const SignUp = () => {
             >
               <h2 className="heading">Step 2</h2>
               <div className="input-group">
-                <label className="label">Date of Birth</label>
+                <label className="label required">Date of Birth</label>
                 <input
                   type="date"
                   name="dob"
@@ -122,6 +200,7 @@ const SignUp = () => {
                   onChange={handleInputChange}
                   className="input-field"
                 />
+                {errors.dob && <div className="error-message">{errors.dob}</div>}
               </div>
               <div className="input-group">
                 <label className="label">Gender</label>
@@ -138,7 +217,7 @@ const SignUp = () => {
                 </select>
               </div>
               <div className="input-group">
-                <label className="label">Phone Number</label>
+                <label className="label required">Phone Number</label>
                 <input
                   type="tel"
                   name="phone"
@@ -147,6 +226,7 @@ const SignUp = () => {
                   onChange={handleInputChange}
                   className="input-field"
                 />
+                {errors.phone && <div className="error-message">{errors.phone}</div>}
               </div>
               <div className="input-group">
                 <label className="label">Address</label>
