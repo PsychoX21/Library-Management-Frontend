@@ -1,23 +1,23 @@
 import React from 'react';
 import './SignupPage.css';
-import { Intro } from "./Blocks.jsx"
+import { Intro, ProfilePhoto } from "./Blocks.jsx"
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
 
 const SignUp = () => {
   const [slide, setSlide] = useState(0);
   const [formData, setFormData] = useState({
-    profilePhoto: "default1.png",
+    profilePhoto: "src/assets/profiles/1.jpg",
     name: "",
     email: "",
     password: "",
     dob: "",
+    gender: "",
     phone: "",
     address: "",
     referral: "",
   });
-
-  const defaultPhotos = ["src/assets/profiles/1.jpg", "src/assets/profiles/2.jpg", "src/assets/profiles/3.jpg", "src/assets/profiles/4.jpg", "src/assets/profiles/5.jpg", "src/assets/profiles/6.jpg", "src/assets/profiles/7.jpg", "src/assets/profiles/8.jpg", "src/assets/profiles/9.jpg", "src/assets/profiles/10.jpg"];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -57,19 +57,10 @@ const SignUp = () => {
             >
               <h2 className="heading">Step 1</h2>
               <div className="input-group">
-                <label className="label">Profile Photo</label>
-                <div className="photo-selection">
-                  {defaultPhotos.map((photo, index) => (
-                    <div className={`${formData.profilePhoto === photo ? "selected" : ""}`} key={index}>
-                      <img
-                      src={photo}
-                      alt="Default"
-                      className={`photo`}
-                      onClick={() => setFormData({ ...formData, profilePhoto: photo })}
-                      />
-                    </div>
-                  ))}
-                </div>
+                <ProfilePhoto
+                  profilePhoto={formData.profilePhoto}
+                  setProfilePhoto={(photo) => setFormData({ ...formData, profilePhoto: photo })}
+                />
               </div>
               <div className="input-group">
                 <label className="label">Name</label>
@@ -133,6 +124,20 @@ const SignUp = () => {
                 />
               </div>
               <div className="input-group">
+                <label className="label">Gender</label>
+                <select
+                  name="gender"
+                  value={formData.gender}
+                  onChange={handleInputChange}
+                  className="input-field"
+                >
+                  <option value="">Select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div className="input-group">
                 <label className="label">Phone Number</label>
                 <input
                   type="tel"
@@ -151,6 +156,7 @@ const SignUp = () => {
                   placeholder='Enter your address like room number, hostel number, etc.'
                   onChange={handleInputChange}
                   className="input-field"
+                  rows="2"
                 ></textarea>
               </div>
               <div className="input-group">
@@ -187,27 +193,20 @@ const SignUp = () => {
 };
 
 const SignupPage = () => {
-  useEffect(() => {
-    document.body.classList.add("auth-body-style");
-    document.getElementById("root").classList.add("auth-root-style");
-
-    return () => {
-      document.body.classList.remove("auth-body-style");
-      document.getElementById("root").classList.remove("auth-root-style");
-    };
-  }, []);
   return (
-    <div className="signup-main">
-      <img
-        src="src/assets/iitblogo.png"
-        alt="Library"
-        className="lib-image-signup"
-      />
-      <div className='left'>
-        <Intro height="60%" width="95%" margin="0px"/>
+    <div className='auth-root-style'>
+      <div className="signup-main">
+        <img
+          src="src/assets/iitblogo.png"
+          alt="Library"
+          className="lib-image-signup"
+        />
+        <div className='left'>
+          <Intro height="60%" width="95%" margin="0px"/>
+        </div>
+        <SignUp />
       </div>
-      <SignUp />
-    </div>
+    </div>  
   );
 };
 

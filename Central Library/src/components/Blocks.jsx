@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from 'styled-components';
+import { FaEdit } from "react-icons/fa";
 
-const StyledDiv = styled.div`
+const IntroDiv = styled.div`
     height: ${(props) => props.height || 'auto'};
     width: ${(props) => props.width || '50%'};
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: ${(props) => props.margin || '20px'};
+    margin: ${(props) => props.$margin || '20px'};
     padding: 20px;
     background-color: rgba(31, 60, 31, 0.7);
     border-radius: 10px;
@@ -15,6 +16,7 @@ const StyledDiv = styled.div`
     border: 1rem solid #92B775;
     position: relative;
     z-index: 1;
+    box-sizing: content-box;
 
     h1 {
         font-size: 6rem;
@@ -33,10 +35,82 @@ const StyledDiv = styled.div`
 
 export const Intro = ({ height, width, margin }) => {
     return (
-        <StyledDiv height={height} width={width} margin={margin}>
+        <IntroDiv height={height} width={width} $margin={margin}>
             <h1>Central Library</h1>
             <h3>Indian Institute of Technology, Bombay</h3>
             <h4>Mumbai, Maharashtra - 400076</h4>
-        </StyledDiv>
+        </IntroDiv>
+    );
+};
+
+const ProfileContainer = styled.div`
+position: relative;
+width: 220px;
+height: 220px;
+border-radius: 50%;
+overflow: hidden;
+`;
+
+const ProfileImage = styled.img`
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 50%;
+`;
+
+const EditOverlay = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'show' // Don't forward 'show' to the DOM
+})`
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: rgba(0, 0, 0, 0.5);
+width: 100%;
+height: 100%;
+display: ${({ show }) => (show ? "flex" : "none")};
+align-items: center;
+justify-content: center;
+border-radius: 50%;
+cursor: pointer;
+`;
+
+const EditIcon = styled(FaEdit)`
+color: white;
+font-size: 24px;
+`;
+
+const HiddenFileInput = styled.input`
+display: none;
+`;
+
+export const ProfilePhoto = ({ profilePhoto, setProfilePhoto }) => {
+
+    const [showEdit, setShowEdit] = useState(false);
+
+    const handleFileChange = (event) => {
+        if (event.target.files && event.target.files[0]) {
+        setProfilePhoto(URL.createObjectURL(event.target.files[0]));
+        }
+    };
+
+    return (
+        <ProfileContainer
+        onMouseEnter={() => setShowEdit(true)}
+        onMouseLeave={() => setShowEdit(false)}
+        >
+        <ProfileImage src={profilePhoto} alt="Profile" />
+        
+        <EditOverlay show={showEdit} onClick={() => document.getElementById("fileInput").click()}>
+            <EditIcon />
+        </EditOverlay>
+
+        <HiddenFileInput
+            type="file"
+            id="fileInput"
+            accept="image/*"
+            onChange={handleFileChange}
+        />
+        </ProfileContainer>
     );
 };

@@ -1,14 +1,60 @@
+/* Wrapper for the password input and eye icon */
+.login-container .password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Style for the password input (inherits existing styles) */
+.login-container .password-wrapper input {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #FEFAE0;
+  color: black;
+  transition: all 0.3s ease;
+}
+
+.login-container .password-wrapper input:focus {
+  border-color: #6a11cb;
+  box-shadow: 0 0 10px rgba(106, 17, 203, 0.3);
+}
+
+.login-container .password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 20%;
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+  transition: color 0.3s ease;
+}
+
+.login-container .password-toggle:hover {
+  color: #6a11cb;
+}
+
 .login-main {
   background: #92b775;
   border-radius: 25px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  padding: 25px;
+  padding: 25px 0px;
   align-self: flex-start;
   position: relative;
   top: 5%;
+  left: 5%;
   z-index: 2;
   width: 80%;
   aspect-ratio: 2.4;
+  box-sizing: content-box;
+  
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.login-main.fade-in {
+  opacity: 1;
 }
 
 .login-container {

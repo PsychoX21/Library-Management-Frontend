@@ -1,23 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AuthPage.css';
 import { Intro } from "./Blocks.jsx"
-import { useEffect } from "react";
 
 const AuthPage = () => {
-  useEffect(() => {
-    document.body.classList.add("auth-body-style");
-    document.getElementById("root").classList.add("auth-root-style");
+  const [loaded, setLoaded] = useState(false);
 
-    return () => {
-      document.body.classList.remove("auth-body-style");
-      document.getElementById("root").classList.remove("auth-root-style");
-    };
+  useEffect(() => {
+    setLoaded(true); // Triggers effect after mount
   }, []);
+
   const navigate = useNavigate();
 
   return (
-    <>
+    <div className='auth-root-style'>
       <Intro height="85%" width="50%" margin="20px"/>
 
       <div className='right'>
@@ -27,7 +23,7 @@ const AuthPage = () => {
         className="auth-lib-image"
         />
         
-        <div className="auth-main">
+        <div className={`auth-main ${loaded ? "fade-in" : ""}`}>
 
           <h1>Welcome</h1>
           
@@ -50,7 +46,7 @@ const AuthPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
