@@ -7,6 +7,7 @@ import { Homepage } from './components/Homepage';
 import { MapPage } from './components/MapPage';
 import { ProfilePage } from './components/ProfilePage';
 import { BookPage } from './components/BookPage';
+import { SearchPage } from './components/SearchPage';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/map" element={<MapPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/books" element={<BookPage />} />
+        <Route path="/search" element={<SearchPage />} />
       </Routes>
     </Router>
   );

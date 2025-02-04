@@ -41,7 +41,7 @@ export const Homepage = () => {
         <p>1000 Hrs to 1700 Hrs</p>
       </div>
       <div className="buttons">
-      <button className="find" onClick={() => navigate('/books')}>
+      <button className="find" onClick={() => navigate('/search')}>
         <img src={search} alt="" className="search" />
         Find a Book
       </button>
